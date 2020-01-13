@@ -26,6 +26,7 @@ RCT_EXPORT_METHOD(initialize)
 RCT_EXPORT_METHOD(call:(NSString *)urlString)
 {
     RCTLogInfo(@"Load URL %@", urlString);
+    RCTLogInfo(@"HuskyLuu_JitsiMeet %@", urlString);
     dispatch_sync(dispatch_get_main_queue(), ^{
         JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {        
             builder.room = urlString;
