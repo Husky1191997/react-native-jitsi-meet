@@ -37,7 +37,7 @@ RCT_EXPORT_METHOD(call:(NSString *)urlString)
 RCT_EXPORT_METHOD(audioCall:(NSString *)urlString)
 {
     RCTLogInfo(@"Load Audio only URL %@", urlString);
-    RCTLogInfo(@"Hello! HuskyLuu_JitsiMeet %@");
+    RCTLogInfo(@"Hello! HuskyLuu_JitsiMeet %@", urlString);
     dispatch_sync(dispatch_get_main_queue(), ^{
         JitsiMeetConferenceOptions *options = [JitsiMeetConferenceOptions fromBuilder:^(JitsiMeetConferenceOptionsBuilder *builder) {        
             builder.room = urlString;
