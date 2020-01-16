@@ -40,7 +40,6 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             .build();
                     mJitsiMeetViewReference.getJitsiMeetView().join(options);
                     Log.d("HuskuLuu1997.JitsiMeet", "Initialize is deprecated in v2");
-                    Log.e(TAG, "savedInstanceState is null");
                 }
             }
         });
@@ -58,7 +57,6 @@ public class RNJitsiMeetModule extends ReactContextBaseJavaModule {
                             .build();
                     mJitsiMeetViewReference.getJitsiMeetView().join(options);
                     Log.d("HuskuLuu1997.JitsiMeet", "Initialize is deprecated in v2");
-                    Log.e(TAG, "Hello Jitsi Meet! WellCome To Dora!!!");
                 }
             }
         });

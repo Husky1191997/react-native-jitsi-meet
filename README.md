@@ -3,9 +3,9 @@ React native wrapper for Jitsi Meet SDK
 
 ## Install
 
-`npm install react-native-jitsi-meet --save` 
+`npm install react-native-jitsi-meet --save`
 
-If you are using React-Native < 0.60, you should use a version < 2.0.0.  
+If you are using React-Native < 0.60, you should use a version < 2.0.0.
 For versions higher than 2.0.0, you need to add the following piece of code in your ```metro.config.js``` file to avoid conflicts between react-native-jitsi-meet and react-native in metro bundler.
 
 ```
@@ -79,11 +79,11 @@ You can add listeners for the following events:
 
 ## Use (< 2.0.0 and RN<0.60)
 
-In your component, 
+In your component,
 
 1.) import JitsiMeet and JitsiMeetEvents: `import JitsiMeet, { JitsiMeetEvents } from 'react-native-jitsi-meet';`
 
-2.) add the following code: 
+2.) add the following code:
 
 ```
   const initiateVideoCall = () => {
@@ -105,7 +105,7 @@ You can add listeners for the following events:
 
 ## iOS Configuration
 
-1.) navigate to `<ProjectFolder>/ios/<ProjectName>/`  
+1.) navigate to `<ProjectFolder>/ios/<ProjectName>/`
 2.) edit `Info.plist` and add the following lines
 
 ```
@@ -114,7 +114,7 @@ You can add listeners for the following events:
 <key>NSMicrophoneUsageDescription</key>
 <string>Microphone Permission</string>
 ```
-3.) in `Info.plist`, make sure that 
+3.) in `Info.plist`, make sure that
 ```
 <key>UIBackgroundModes</key>
 <array>
@@ -123,13 +123,13 @@ You can add listeners for the following events:
 contains `<string>voip</string>`
 
 ## iOS Manual Install for RN >= 0.60
-1.) Modify your Podfile to have ```platform :ios, '10.0'``` and execute ```pod install```  
-2.) In Xcode, under Build setting set Enable Bitcode to No  
+1.) Modify your Podfile to have ```platform :ios, '10.0'``` and execute ```pod install```
+2.) In Xcode, under Build setting set Enable Bitcode to No
 
 ## iOS Manual Install for RN < 0.60
 ### Step 1. Add Files Into Project
-- 1-1.) in Xcode: Right click `Libraries` ➜ `Add Files to [project]`  
-- 1-2.) choose `node_modules/react-native-jitsi-meet/ios/RNJitsiMeet.xcodeproj` then `Add`  
+- 1-1.) in Xcode: Right click `Libraries` ➜ `Add Files to [project]`
+- 1-2.) choose `node_modules/react-native-jitsi-meet/ios/RNJitsiMeet.xcodeproj` then `Add`
 - 1-3.) add `node_modules/react-native-jitsi-meet/ios/WebRTC.framework` and `node_modules/react-native-jitsi-meet/ios/JitsiMeet.framework` to the Frameworks folder
 - 1-4.) add `node_modules/react-native-jitsi-meet/ios/JitsiMeet.storyboard` in the same folder as AppDelegate.m
 - 1-5.) Replace the following code in AppDelegate.m:
@@ -145,29 +145,29 @@ with this one
   UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:rootViewController];
   navigationController.navigationBarHidden = YES;
   rootViewController.view = rootView;
-  self.window.rootViewController = navigationController; 
+  self.window.rootViewController = navigationController;
 ```
 
 This will create a navigation controller to be able to navigate between the Jitsi component and your react native screens.
 
 ### Step 2. Add Library Search Path
 
-2-1.) select `Build Settings`, find `Search Paths`  
-2-2.) edit BOTH `Framework Search Paths` and `Library Search Paths`  
-2-3.) add path on BOTH sections with: `$(SRCROOT)/../node_modules/react-native-jitsi-meet/ios` with `recursive`  
+2-1.) select `Build Settings`, find `Search Paths`
+2-2.) edit BOTH `Framework Search Paths` and `Library Search Paths`
+2-3.) add path on BOTH sections with: `$(SRCROOT)/../node_modules/react-native-jitsi-meet/ios` with `recursive`
 
 ### Step 3. Change General Setting and Embed Framework
 
-3-1.) go to `General` tab  
-3-2.) change `Deployment Target` to `8.0`  
-3-3.) add `WebRTC.framework` and `JitsiMeet.framework` in `Embedded Binaries` 
+3-1.) go to `General` tab
+3-2.) change `Deployment Target` to `8.0`
+3-3.) add `WebRTC.framework` and `JitsiMeet.framework` in `Embedded Binaries`
 
 ### Step 4. Link/Include Necessary Libraries
 
-- 4-1.) click `Build Phases` tab, open `Link Binary With Libraries`  
-- 4-2.) add `libRNJitsiMeet.a`  
-- 4-3.) make sure `WebRTC.framework` and `JitsiMeet.framework` linked  
-- 4-4.) add the following libraries depending on your version of XCode, some libraries might exist or not:  
+- 4-1.) click `Build Phases` tab, open `Link Binary With Libraries`
+- 4-2.) add `libRNJitsiMeet.a`
+- 4-3.) make sure `WebRTC.framework` and `JitsiMeet.framework` linked
+- 4-4.) add the following libraries depending on your version of XCode, some libraries might exist or not:
 
 ```
 AVFoundation.framework
@@ -254,7 +254,7 @@ project.ext.react = [
     }
 ```
 
-3.) In `android/build.gradle`, add the following code 
+3.) In `android/build.gradle`, add the following code
 ```
 allprojects {
     repositories {
@@ -359,3 +359,94 @@ If your app already includes `react-native-locale-detector` or `react-native-vec
       exclude group: 'com.facebook.react',module:'react-native-vector-icons'
     }
 ```
+## Tree Code Structure
+### Android
+1. Structure
+````
+├── .gradle
+├── .idea
+├── build
+├── gradle/ wrapper
+├── src/ main
+│   └──java/com/reactnativejitsimeet
+│      └─ IRNJitsiMeetViewReference
+│      └─ RNJitsiMeetConferenceOptions
+│      └─ RNJitsiMeetModule
+│      └─ RNJitsiMeetPackage
+│      └─ RNJitsiMeetUserInfo
+│      └─ RNJitsiMeetView
+│      └─ RNJitsiMeetViewManager
+│      └─ RNOngoingConferenceTracker
+├── wrapper
+├── android.iml
+├── build.gradle
+├── gradlew
+└── gradkew.bat
+````
+2. Details
+  * IRNJitsiMeetViewReference:
+  * RNJitsiMeetConferenceOptions:
+> `This class represents the options when joining a Jitsi Meet conference. The user can create aninstance by using {@link RNJitsiMeetConferenceOptions.Builder} and setting the desired options there`
+> `The resulting {@link RNJitsiMeetConferenceOptions} object is immutable and represents how the conference   will be joined.`
+  * RNJitsiMeetModule:
+  > `it module contains react methods to perform main functions like call, audiocall, endcall.`
+    * call() :
+      * .setRoom(url):
+      * .setAudioOnly(false):
+      * .build():
+      * mJitsiMeetViewReference.getJitsiMeetView().join(options):
+    * auodicall():
+      * .setRoom(url)
+      * .setAudioOnly(true)
+      * .build();
+    * endcall():
+      * mJitsiMeetViewReference.getJitsiMeetView().leave():
+  * RNJitsiMeetPackage:
+    * createNativeModules: `used to initialize methods`
+    * creat View Manager: `Used to initialize options in the main screen when calling`
+  * RNJitsiMeetUserInfo: `when user join to call, it getList infomation of user as avatarURL, displayName, email... and show in screen call for each peple join call`
+  * RNJitsiMeetView:
+    1.  *  org.jitsi.meet.sdk.BaseReactView
+        *  org.jitsi.meet.sdk.JitsiMeet
+        *  org.jitsi.meet.sdk.JitsiMeetViewListener
+        *  org.jitsi.meet.sdk.ListenerUtils
+        *  org.jitsi.meet.sdk.log.JitsiMeetLogger
+    2.  * RNOngoingConferenceTracker.getInstance().addListener(this): `Helper class to keep track of what the      current conference is.`
+        * RNOngoingConferenceTracker.getInstance().removeListener(this): `Helper class to keep track of what the current conference is.`
+        * onExternalAPIEvent(LISTENER_METHODS, name, data): `Used to call the API that Jitsi meet provides`
+        * onCurrentConferenceChanged(String conferenceUrl): ``
+  * RNJitsiMeetViewManager: `contain event listener as onConferenceJoined(), onConferenceTerminated(), onConferenceWillJoin().`
+    * onConferenceJoined(): `notifies the local user that he joined the conference successfully`
+    * onConferenceTerminated(): `notifies the local user that he left the conference successfully`
+    * onConferenceWillJoin()
+  * RNOngoingConferenceTracker:`to keep track of what the current conference is`
+### IOS
+````
+├── RNJitsiMeet.xcodeproj
+├── RNJitsiMeetView.h
+├── RNJitsiMeetView.m
+├── RNJitsiMeetViewManager.h
+├── RNJitsiMeetViewManager.m
+````
+## [Jitsi Meet JDK Android](https://github.com/jitsi/jitsi-meet/tree/master/android/sdk)
+````
+├── .gradle
+├── .idea
+├── build
+├── gradle/ wrapper
+├── src/ main
+│   └──java/com/reactnativejitsimeet
+│      └─ IRNJitsiMeetViewReference
+│      └─ RNJitsiMeetConferenceOptions
+│      └─ RNJitsiMeetModule
+│      └─ RNJitsiMeetPackage
+│      └─ RNJitsiMeetUserInfo
+│      └─ RNJitsiMeetView
+│      └─ RNJitsiMeetViewManager
+│      └─ RNOngoingConferenceTracker
+├── wrapper
+├── android.iml
+├── build.gradle
+├── gradlew
+└── gradkew.bat
+````
